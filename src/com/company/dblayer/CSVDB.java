@@ -1,13 +1,20 @@
 package com.company.dblayer;
 
 import com.company.generator.GenerateTeacher;
+import com.company.person.Teacher;
+import com.company.scheduling.Load;
 import com.company.schoolclass.SchoolClass;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Queue;
 
 public class CSVDB {
     public static void writeInCSV (String str){
@@ -77,5 +84,33 @@ public class CSVDB {
                 +schoolClass.schedule.getScheduleOfDay(i)[1] + schoolClass.schedule.getScheduleOfDay(i)[2]);
             }
         }
+    }
+
+    public static void readTeacherFromCSV () throws IOException, ParseException {
+        String pattern = "dd-MM-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String csvFilename = "C:\\school schedule\\Teacher.csv";
+        FileReader reader = new FileReader(csvFilename);
+        CSVReader csvReader = new CSVReader(reader, ';');
+        String[] row = null;
+        System.out.println("====>READ TEACHER FROM VSV<====");
+        while((row = csvReader.readNext()) != null) {
+            System.out.println("name => " + row[0]
+                    + " BD==> " + row[1]);
+            String[] temp = row[3].split("#");
+            Date date =  simpleDateFormat.parse(row[1]);
+            Teacher result = new Teacher(row[0],date);
+            int i = 0;
+            Load[] resultLoad = new Load[temp.length];
+            for (String str : temp){
+                String[] tempResult = str.split("=");
+                resultLoad[i] = new Load(tempResult[0], Integer.parseInt(tempResult[1]));
+            }
+        }
+        reader.close();
+        csvReader.close();
+        System.out.println("=================================");
+
+
     }
 }
