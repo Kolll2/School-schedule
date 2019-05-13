@@ -12,9 +12,9 @@ public class Main {
     public static void main(String[] args) throws IOException {
         //CSVDB.writeInCSV("");
         System.out.println("All right");
-        //CSVDB.readLessonsTRFromCSV();
+        CSVDB.readTeacherFromCSV();
 
-        CSVDB.writeSchoolClassInCSV(GenerateClass.genNewSchoolClass());
+        //CSVDB.writeSchoolClassInCSV(GenerateClass.genNewSchoolClass());
 
         /*LessonQueueTests lessonQueueTests = new LessonQueueTests();
         lessonQueueTests.mainTestLessonQueue();*/

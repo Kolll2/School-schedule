@@ -1,15 +1,17 @@
 package com.company.person;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Person {
-    public Person(String firstName, String birthDate) {
+
+    public String firstName;
+    public Date birthDate;
+
+    public Person(String firstName, Date birthDate) {
         this.firstName = firstName;
         this.birthDate = birthDate;
     }
-
-    public String firstName;
-    public String birthDate;
 
     @Override
     public boolean equals(Object o) {
