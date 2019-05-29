@@ -1,8 +1,11 @@
 package com.company.dblayer;
 
+import com.company.generator.GenerateLesson;
 import com.company.generator.GenerateTeacher;
+import com.company.lesson.Lesson;
 import com.company.person.Teacher;
 import com.company.scheduling.Load;
+import com.company.scheduling.Scheduling;
 import com.company.schoolclass.SchoolClass;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
@@ -63,7 +66,6 @@ public class CSVDB {
             System.out.println(row[0]
                     + " ==> " + row[1]);
         }
-
         reader.close();
         csvReader.close();
         System.out.println("=================================");
@@ -79,9 +81,8 @@ public class CSVDB {
             allInfo[2] = schoolClass.fixedClassRoom;
             writer.writeNext(allInfo);
             for (int i = 0; i < 6; i++){
-                writer.writeNext(schoolClass.schedule.getScheduleOfDay(i));
-                System.out.println(schoolClass.schedule.getScheduleOfDay(i)[0]
-                +schoolClass.schedule.getScheduleOfDay(i)[1] + schoolClass.schedule.getScheduleOfDay(i)[2]);
+                writer.writeNext(allInfo);
+                System.out.println(allInfo[0] + " " + allInfo[1] + " " + allInfo[2]);
             }
         }
     }
@@ -93,7 +94,7 @@ public class CSVDB {
         FileReader reader = new FileReader(csvFilename);
         CSVReader csvReader = new CSVReader(reader, ';');
         String[] row = null;
-        System.out.println("====>READ TEACHER FROM VSV<====");
+        System.out.println("====>READ TEACHER FROM CSV<====");
         while((row = csvReader.readNext()) != null) {
             System.out.println("name => " + row[0]
                     + " BD==> " + row[1]);
@@ -110,6 +111,32 @@ public class CSVDB {
         reader.close();
         csvReader.close();
         System.out.println("=================================");
+
+
+    }
+
+    public static void writeSchedulingInCSV (Scheduling scheduling) throws IOException {
+        String csv = "C:\\school schedule\\SchedulingDB.csv";
+        try (CSVWriter writer = new CSVWriter(new FileWriter(csv), ';')) {
+            for (int nosc = 0; nosc < Scheduling.NOSC; nosc++){
+                for (int workday = 0; workday < Scheduling.WORKDAY; workday++){
+                    for (int totl = 0; totl < Scheduling.TOTL; totl++){
+                        Lesson tempLesson = GenerateLesson.randomLesson();
+                        String[] allInfo = new String[4];
+                        allInfo[0] = tempLesson.name;
+                        allInfo[1] = tempLesson.teacherName;
+                        allInfo[2] = tempLesson.schoolClassName;
+                        allInfo[3] = tempLesson.load.toString();
+                        writer.writeNext(allInfo);
+                    }
+
+                }
+
+            }
+
+
+
+        }
 
 
     }

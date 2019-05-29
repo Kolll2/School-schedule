@@ -33,12 +33,17 @@ public class Scheduling {
 
     public static final int TOTL = 9;
 
-    Lesson [][][] sharedSchedule = new Lesson[NOSC][WORKDAY][TOTL];
+    public static Lesson [][][] sharedSchedule = new Lesson[NOSC][WORKDAY][TOTL];
 
+    public static void main(String[] args) throws ParseException {
 
+        Scheduling scheduling = new Scheduling();
+        //scheduling.print();
+
+    }
 
     public Scheduling() {
-        this.sharedSchedule = generatorSharedSchedule();
+
     }
 
     public Scheduling(Lesson[][][] sharedSchedule) {
