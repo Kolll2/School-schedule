@@ -1,7 +1,9 @@
 package com.company.person;
 
+import java.util.Date;
+
 public class Schoolchild extends Person {
-    public Schoolchild(String firstName, String birthDate) {
+    public Schoolchild(String firstName, Date birthDate) {
         super(firstName, birthDate);
     }
 

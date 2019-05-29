@@ -6,10 +6,12 @@ import com.company.lesson.LessonQueueTests;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.ParseException;
+
 //254837
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ParseException {
         //CSVDB.writeInCSV("");
         System.out.println("All right");
         CSVDB.readTeacherFromCSV();

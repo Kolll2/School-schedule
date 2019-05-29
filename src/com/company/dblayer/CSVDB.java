@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.Queue;
 
 public class CSVDB {
-    public static void writeInCSV (String str){
+    public static void writeInCSV (String str) throws ParseException {
         String csv = "C:\\school schedule\\TeacherBD.csv";
         try (CSVWriter writer = new CSVWriter(new FileWriter(csv))) {
             GenerateTeacher generateTeacher = new GenerateTeacher();
@@ -97,15 +97,15 @@ public class CSVDB {
         while((row = csvReader.readNext()) != null) {
             System.out.println("name => " + row[0]
                     + " BD==> " + row[1]);
-            String[] temp = row[3].split("#");
             Date date =  simpleDateFormat.parse(row[1]);
             Teacher result = new Teacher(row[0],date);
+            /*String[] temp = row[3].split("#");
             int i = 0;
             Load[] resultLoad = new Load[temp.length];
             for (String str : temp){
                 String[] tempResult = str.split("=");
                 resultLoad[i] = new Load(tempResult[0], Integer.parseInt(tempResult[1]));
-            }
+            }*/
         }
         reader.close();
         csvReader.close();
