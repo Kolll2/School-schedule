@@ -1,6 +1,7 @@
 <application>
   <component name="FileTypeManager" version="17">
     <extensionMap>
+      <mapping pattern="KidGirl" type="CLASS" />
       <mapping pattern="main" type="JavaFX" />
     </extensionMap>
   </component>
